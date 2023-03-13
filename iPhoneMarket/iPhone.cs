@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace iPhoneMarket
 {
-    internal class iPhone
+    public class iPhone
     {
         public string _model;
         public int _imei;
@@ -14,6 +14,7 @@ namespace iPhoneMarket
         public int _summ_sk;
         public int _summ_pr;
         public int _pribil;
+      
 
         public string Model
         {
@@ -41,6 +42,7 @@ namespace iPhoneMarket
         {
             get => _pribil;
         }
+
         public iPhone(string Model, int imei, string Sost, int summ_sk, int summ_pr, int pribil)
         {
             _model = Model;

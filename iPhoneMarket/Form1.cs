@@ -10,27 +10,47 @@ using System.Windows.Forms;
 
 namespace iPhoneMarket
 {
+    
     public partial class Form1 : Form
     {
         public Form1()
         {
             InitializeComponent();
+            iPhones = new List<iPhone>();
+
         }
 
+        
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        
+        public List<iPhone> iPhones { get; set; }
+        public void button1_Click(object sender, EventArgs e)
         {
-            if (textBox1 == null || textBox2 == null || textBox3 == null || textBox4 == null || textBox5 == null || label6 == null) return;
-            else if (textBox1.Text != string.Empty && textBox2.Text != string.Empty && textBox3.Text != string.Empty && textBox4.Text != string.Empty && textBox5.Text != string.Empty && label6.Text != string.Empty)
-            {
-                this.Hide();
-            }
-            iPhone.Add(textBox1);
+            iPhones.Add(new iPhone(Convert.ToString(textBox1.Text), Convert.ToInt32(textBox2.Text), Convert.ToString(textBox3.Text), Convert.ToInt32(textBox4.Text), Convert.ToInt32(textBox5.Text), Convert.ToInt32(label6.Text)));
+            dataGridView1.DataSource = iPhones.ToList();
+            
+        }
 
+        private void label6_Click(object sender, EventArgs e)
+        {
+            label6.Text=Convert.ToString(Convert.ToDouble(textBox5.Text)- Convert.ToDouble(textBox4.Text));
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = iPhones.Where(любое_имя => любое_имя.imei == Convert.ToInt32(textBox6.Text)).ToList();
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+            {
+                dataGridView1.DataSource = iPhones.Where(любое_имя => любое_имя.summ_sk >= 15000).ToList();
+            }
         }
     }
 }
